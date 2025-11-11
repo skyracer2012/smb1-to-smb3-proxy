@@ -13,9 +13,9 @@ while True:
   elif not shareEnable == "1":
     continue
 
-  remoteMount = '/remote{}'.format(i)
+  mount = '/share{}'.format(i)
 
-  checkFile = remoteMount + "/healthcheck.txt"
+  checkFile = mount + "/healthcheck.txt"
   try:
     file = open(checkFile, "w") 
     file.write("healthcheck") 
@@ -23,7 +23,7 @@ while True:
     os.remove(checkFile)
   except OSError:
     fail = True
-    print(remoteMount + " is not writeable")
+    print(mount + " is not writeable")
 
 ret = subprocess.call("smbclient -L \\localhost -U % -m SMB3", shell=True)
 if ret != 0:

@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] - 2025-11-11
+- Fix the healthcheck, retroactivly increase semver for the breaking change the bi-directionality from 2023-02-26 brings.
+
 ## [0.5.0] - 2023-02-26
 - Clone and dump all filewatcher syncing code and use mounted directory as smb source directory
 
