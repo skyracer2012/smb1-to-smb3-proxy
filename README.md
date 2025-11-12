@@ -1,17 +1,16 @@
-# smb1-proxy #
+# smb1-to-smb3-proxy #
 
-[![](https://img.shields.io/docker/v/rokpotocnik/smb1-proxy?sort=semver)](https://hub.docker.com/r/rokpotocnik/smb1-proxy/tags)
-[![](https://img.shields.io/docker/pulls/rokpotocnik/smb1-proxy)](https://hub.docker.com/r/rokpotocnik/smb1-proxy)
-[![](https://img.shields.io/docker/stars/rokpotocnik/smb1-proxy)](https://hub.docker.com/r/rokpotocnik/smb1-proxy)
-[![](https://img.shields.io/docker/image-size/rokpotocnik/smb1-proxy)](https://hub.docker.com/r/rokpotocnik/smb1-proxy)
-[![](https://img.shields.io/docker/cloud/build/rokpotocnik/smb1-proxy)](https://hub.docker.com/r/rokpotocnik/smb1-proxy/builds)
+This container is used to proxy an existing secure smb share (version 2+) to allow legacy devices, that only support cifs/smb v1 the access to a specific share or folder on the secure share - without downgrading the complete server to smb v1. 
+Its designed to sync all files to the secure share. If a file in the legacy system changes, the modern smb server will get a request to edit the file and vice-versa. Keep in mind that smb1 is unsafe and some kind of Snapshot-System (i.e. ZFS Snapshopts) as well as a VLAN/DMZ should be used for security. The data on this share should be assumed to be attackable once an attacker is inside of your network. 
 
-This container is used to proxy an existing secure smb share (version 2+) to allow legacy devices, that only support cifs/smb v1 the access to a specific share or folder on the secure share - without downgrading the complete server to smb v1. Its designed to forward all files to the secure share, without overwriting files on the destination
-
-* GitHub: [rpotocnik/smb1-proxy](https://github.com/rpotocnik/smb1-proxy)
-* Docker Hub: [rokpotocnik/smb1-proxy](https://hub.docker.com/repository/docker/rokpotocnik/smb1-proxy)
+* GitHub: [skyracer2012/smb1-to-smb3-proxy](https://github.com/skyracer2012/smb1-to-smb3-proxy)
+* ~~Docker Hub~~ Github Packages: [skyracer2012/smb1-to-smb3-proxy](https://github.com/skyracer2012/smb1-to-smb3-proxy/pkgs/container/smb1-to-smb3-proxy)
 
 ## Usage ##
+
+```shell
+docker pull ghcr.io/skyracer2012/smb1-to-smb3-proxy:latest
+```
 
 Example docker-compose configuration:
 
@@ -20,7 +19,7 @@ version: '3.7'
 
 services:
   smb1proxy:
-    image: rpotocnik/smb1-proxy
+    image: ghcr.io/skyracer2012/smb1-to-smb3-proxy:latest
     environment:
       TZ: 'Europe/Berlin'
       USERID: 1000
